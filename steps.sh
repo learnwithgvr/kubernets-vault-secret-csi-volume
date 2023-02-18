@@ -1,5 +1,5 @@
 #k8s sa,role,secret
-k apply -f /Users/gvr/Projects/YAML/vault-k8s/sa-vault.yaml
+k apply -f sa-vault.yaml
 
 k get sa vault-auth-sa
 k get clusterrolebinding secret-reader-binding
@@ -76,14 +76,14 @@ helm install vault hashicorp/vault \
     --set "injector.enabled=false" \
     --set "csi.enabled=true"
 
-k apply -f /Users/gvr/Projects/YAML/vault-k8s/spc-crd-vault.yaml
+k apply -f spc-crd-vault.yaml
 
 k api-resources | grep -i secret
 k get secretproviderclasses
 k describe secretproviderclasses vault-database
 
 #pod which mounts valut secret
-k apply -f /Users/gvr/Projects/YAML/vault-k8s/webapp.yaml
+k apply -f webapp.yaml
 
 #export VAULT_TOKEN=$(vault print token)
 
